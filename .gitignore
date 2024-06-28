@@ -1,0 +1,2 @@
+# Ignorar una clase específica en el paquete Util
+src/main/java/Util/ConectarBD.java
