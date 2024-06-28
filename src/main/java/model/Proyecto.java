@@ -3,11 +3,13 @@ package model;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 
+
 public class Proyecto {
 
 	private int idProyecto;
 	private String nombre;
 	private String descripcion;
+	
 	private LocalDate fechaInicio;
 	private LocalDate fechaFin;
 	private String estado;
@@ -20,6 +22,7 @@ public class Proyecto {
 		//super();
 	}
 
+	
 	public Proyecto(int idProyecto, String nombre, String descripcion, LocalDate fechaInicio, LocalDate fechaFin,
 			String estado, Usuario usuarioRegistro, LocalDateTime fechaRegistro, Usuario usuarioUltiModificacion,
 			LocalDateTime fechaUltiModificacion) {
@@ -114,6 +117,16 @@ public class Proyecto {
 
 	public void setFechaUltiModificacion(LocalDateTime fechaUltiModificacion) {
 		this.fechaUltiModificacion = fechaUltiModificacion;
+	}
+
+
+	@Override
+	public String toString() {
+		return "Proyecto [idProyecto=" + idProyecto + ", nombre=" + nombre + ", descripcion=" + descripcion
+				+ ", fechaInicio=" + fechaInicio + ", fechaFin=" + fechaFin + ", estado=" + estado
+				+ ", usuarioRegistro=" + usuarioRegistro + ", fechaRegistro=" + fechaRegistro
+				+ ", usuarioUltiModificacion=" + usuarioUltiModificacion + ", fechaUltiModificacion="
+				+ fechaUltiModificacion + "]";
 	}
 	
 	
