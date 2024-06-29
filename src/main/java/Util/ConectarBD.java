@@ -8,7 +8,7 @@ public class ConectarBD {
 
     private static final String URL = "jdbc:mysql://localhost:3306/bd_gestionproyectos";
     private static final String USUARIO = "root";
-    private static final String PASSWORD = "";
+    private static final String PASSWORD = "LuisBendice123";
 
     private static Connection con = null;
 
