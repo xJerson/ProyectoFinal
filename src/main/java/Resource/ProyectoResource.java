@@ -8,9 +8,12 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import javax.ws.rs.Consumes;
+import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
+import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
+import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
@@ -24,6 +27,7 @@ import Dto.ProyectoDTO;
 import Dto.ProyectoDTOSTRING;
 import adapter.LocalDateAdapter;
 import adapter.LocalDateTimeAdapter;
+import model.Perfil;
 import model.Proyecto;
 import model.Usuario;
 
@@ -90,6 +94,29 @@ public class ProyectoResource {
         proyecto.setEstado(proyectoDTO.getEstado());
         proyecto.setUsuarioRegistro(proyectoDTO.getUsuarioRegistro()); 
         return proyecto;
+    }
+    
+    @DELETE
+    @Path("/eliminar/{id}")
+    public Response eliminarPerfil(@PathParam("id") int id) {
+        Proyecto p =new Proyecto();
+        p.setIdProyecto(id);
+        crud.deleteProyecto(p);
+        return Response.ok("Perfil eliminado exitosamente.").build();
+    }
+    @PUT
+    @Path("/actualizar/{id}")
+    public Response actualizarUsuario(@PathParam("id") int id, ProyectoDTOSTRING proyectoDTO) {
+    	 Proyecto proyecto = new Proyecto();
+         proyecto.setNombre(proyectoDTO.getNombre());
+         proyecto.setDescripcion(proyectoDTO.getDescripcion());
+         proyecto.setFechaInicio(LocalDate.parse(proyectoDTO.getFechaInicio())); // Convertir String a fecha
+         proyecto.setFechaFin(LocalDate.parse(proyectoDTO.getFechaFin()));       // Convertir String a fecha
+         proyecto.setEstado(proyectoDTO.getEstado());
+         proyecto.setUsuarioRegistro(proyectoDTO.getUsuarioRegistro());
+         proyecto.setIdProyecto(id);
+        crud.updateProyecto(proyecto);
+        return Response.ok("Proyecto actualizado exitosamente.").build();
     }
     
 }

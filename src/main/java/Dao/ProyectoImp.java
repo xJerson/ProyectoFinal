@@ -75,12 +75,14 @@ public class ProyectoImp implements IProyecto{
 				ConectarBD conex= new ConectarBD();
 				
 				//realizamos la cadena o invocamos al procedimiento almacenado
-				String sql="{call ActualizarUsuario(?,?,?,?,?,?,?)}";
+				String sql="{call ActualizarProyecto(?,?,?,?,?,?,?)}";
 				//aplicamos la interface callablestatement....
 				CallableStatement cs=null;
 				//asignamos a la conexion y el p.a.
 				
 					try {
+						System.out.println(proyecto.toString());		
+						
 						cs=conex.getConexion().prepareCall(sql);
 						//asignamos parametros..
 						cs.setInt(1,proyecto.getIdProyecto());
@@ -190,13 +192,14 @@ public class ProyectoImp implements IProyecto{
 			while(rs.next()){
 				//instanciamos la clase classusuario para almacenar datos de la BD..
 			Proyecto proyecto=new Proyecto();
-			proyecto.setNombre(rs.getString(1));
-			proyecto.setDescripcion(rs.getString(2));
-			proyecto.setFechaInicio(rs.getDate(3).toLocalDate());
-			proyecto.setFechaFin(rs.getDate(4).toLocalDate());
-			proyecto.setEstado(rs.getString(5));
+			proyecto.setIdProyecto(rs.getInt(1));
+			proyecto.setNombre(rs.getString(2));
+			proyecto.setDescripcion(rs.getString(3));
+			proyecto.setFechaInicio(rs.getDate(4).toLocalDate());
+			proyecto.setFechaFin(rs.getDate(5).toLocalDate());
+			proyecto.setEstado(rs.getString(6));
 			
-            Timestamp timestampRegistro = rs.getTimestamp(6);
+            Timestamp timestampRegistro = rs.getTimestamp(8);
             if (timestampRegistro != null) {
                 proyecto.setFechaRegistro(timestampRegistro.toLocalDateTime());
             }
